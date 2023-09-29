@@ -1,10 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import { ref, computed, provide, inject } from 'vue'
+import type { Ref } from 'vue'
 import QuizCard from '../components/QuizCard.vue'
 import TheCongratulation from '../components/TheCongratulation.vue'
 import TheTryAgain from '../components/TheTryAgain.vue'
+import type { IQuizCard } from '../composables/types';
 
-const cards = inject('quizCards')
+const cards = inject('quizCards') as Ref<IQuizCard[]>
 
 const displayedCard = ref(0)
 
@@ -14,7 +16,7 @@ const isComplete = computed(() => (rightAnswersAmount.value === cards.value.leng
 
 const inProcess = computed(() => (displayedCard.value < cards.value.length ? true : false))
 
-function answer(card, answer) {
+function answer(card: IQuizCard, answer: boolean) {
 	nextCard()
 
 	recordAnswer(card, answer)
@@ -26,7 +28,7 @@ function nextCard() {
 	displayedCard.value++
 }
 
-function recordAnswer(card, answer) {
+function recordAnswer(card: IQuizCard, answer: boolean) {
 	card.isAnswered = answer
 }
 

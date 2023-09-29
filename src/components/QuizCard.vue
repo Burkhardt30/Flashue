@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import QuizFailButton from './QuizFailButton.vue'
 import QuizSuccessButton from './QuizSuccessButton.vue'
@@ -9,8 +9,10 @@ const emit = defineEmits(['answer'])
 
 const isFlipped = ref(false)
 
-function flipCard(e) {
-	if (e.target.closest('button')) return
+function flipCard(e: Event) {
+  console.log(typeof e);
+
+	if ((e.target as HTMLInputElement).closest('button')) return
 
 	isFlipped.value = !isFlipped.value
 }

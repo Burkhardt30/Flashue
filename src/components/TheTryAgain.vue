@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { inject } from 'vue'
 
 const totalAnswers = inject('totalAnswers')
@@ -18,13 +18,12 @@ const emit = defineEmits(['resetQuiz'])
 				{{ `${rightAnswersAmount}/${totalAnswers}` }}
 			</span>
 		</p>
-		<RouterLink
-			to="/quiz"
+		<button
 			@click="emit('resetQuiz')"
-			class="text-inherit mr-4 inline-flex h-16 items-center rounded-xl bg-zinc-700 px-8 duration-300 hover:text-green-500 text-2xl"
+			class="mr-4 inline-flex h-16 items-center rounded-xl bg-zinc-700 px-8 duration-300 hover:text-green-500 text-2xl"
 		>
 			Try Again
-		</RouterLink>
+		</button>
 		<RouterLink
 			to="/history"
 			class="inline-flex h-16 items-center rounded-xl bg-zinc-700 px-8 duration-300 hover:text-green-500 text-2xl"
